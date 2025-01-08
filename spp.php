@@ -56,7 +56,7 @@ try {
 
 ?>
 
-<?php if ($data['level'] == 'admin') { ?>
+<?php if ($data['level'] == 'admin' || $data['level'] == 'petugas') { ?>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -71,9 +71,48 @@ try {
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+        <?php if ($data['level'] == 'admin') { ?>
+            <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-bold" href="index.php">Pembayaran SPP</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="#">Administrator</a>
+                            </li> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="spp.php">SPP</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Kelas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Siswa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Petugas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Pembayaran</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Laporan</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="logout.php" class="btn btn-primary">Logout</a>
+                </div>
+            </nav>
+        <?php }elseif($data['level'] == 'petugas'){ ?>
+            <nav class="navbar navbar-expand-lg bg-secondary-subtle">
             <div class="container-fluid">
-                <a class="navbar-brand text-bold" href="index.php">Pembayaran SPP</a>
+                <a class="navbar-brand text-bold" href="#">Pembayaran SPP</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -88,14 +127,6 @@ try {
                         <li class="nav-item">
                             <a class="nav-link" href="spp.php">SPP</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Kelas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Siswa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Petugas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pembayaran</a>
@@ -106,8 +137,10 @@ try {
                     </ul>
                 </div>
                 <a href="logout.php" class="btn btn-primary">Logout</a>
+
             </div>
         </nav>
+        <?php }?>
 
         <div class="container-fluid mt-2">
             <div class="row">

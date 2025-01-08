@@ -1,5 +1,5 @@
 <?php
-    include_once 'config/config.php';
+    include 'config/config.php';
 
    try {
 
@@ -11,12 +11,3 @@
    } catch (\Throwable $th) {
         die("ERROR IS ". $th);
    }
-
-    
-
-
-//    $connect->close();
-
-
-
-?>
