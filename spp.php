@@ -166,14 +166,14 @@ try {
                                                 <div class="modal-body">
                                                     <div class="mb-3">
                                                         <label for="tahun">Tahun</label>
-                                                        <input type="text" class="form-control" id="tahun" placeholder="Masukkan Tahun" name="tahun">
+                                                        <input type="number" class="form-control" id="tahun" placeholder="Masukkan Tahun" name="tahun">
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label for="nominal">Nominal SPP</label>
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text">Rp.</span>
-                                                            <input type="text" class="form-control" placeholder="Masukkan Nominal SPP" id="nominal" name="nominal">
+                                                            <input type="number" class="form-control" placeholder="Masukkan Nominal SPP" id="nominal" name="nominal">
                                                             <span class="input-group-text">.00</span>
                                                         </div>
                                                     </div>
@@ -234,14 +234,14 @@ try {
                                                         <div class="modal-body">
                                                             <div class="mb-3">
                                                                 <label for="tahun">Tahun</label>
-                                                                <input type="text" class="form-control" id="tahun" value="<?= $spp['tahun'] ?>" name="tahuns">
+                                                                <input type="number" class="form-control" id="tahun" value="<?= $spp['tahun'] ?>" name="tahuns">
                                                             </div>
 
                                                             <div class="mb-3">
                                                                 <label for="nominal">Nominal SPP</label>
                                                                 <div class="input-group mb-3">
                                                                     <span class="input-group-text">Rp.</span>
-                                                                    <input type="text" class="form-control" value="<?= $spp['nominal'] ?>" id="nominal" name="nominals">
+                                                                    <input type="number" class="form-control" value="<?= $spp['nominal'] ?>" id="nominal" name="nominals">
                                                                     <span class="input-group-text">.00</span>
                                                                 </div>
                                                             </div>
