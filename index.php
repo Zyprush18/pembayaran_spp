@@ -8,149 +8,80 @@ try {
     $username = $_SESSION['user']['username'];
     $password = $_SESSION['user']['password'];
 
-    $level = mysqli_query($connect, "SELECT level FROM petugas WHERE username='$username' AND password='$password'");
+    $level = mysqli_query($connect, "SELECT levels FROM petugas WHERE username='$username' AND password='$password'");
 
     $data = mysqli_fetch_array($level);
+
+    if ($data['levels'] !== 'admin') {
+        echo '<script>Your No Access this menu</script>';
+    }
 } catch (\Throwable $th) {
     throw $th;
 }
 ?>
 
-
-<!DOCTYPE html>
+<?php if ($data['levels'] == 'admin') { ?>
+    <!DOCTYPE html>
 <html lang="en">
-<?php if ($data['level'] == 'petugas') { ?>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=q, initial-scale=1.0">
-        <title>Petugas</title>
-        <link rel="stylesheet" href="/asset/bootstrap-5.3.3-dist/css/bootstrap.min.css">
-        <script src="/asset/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran SPP</title>
+    <link rel="stylesheet" href="./asset/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <script src="./asset/bootstrap-5.3.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="./asset/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+</head>
 
-    <body>
-        <nav class="navbar navbar-expand-lg bg-secondary-subtle">
-            <div class="container-fluid">
-                <a class="navbar-brand text-bold" href="#">Pembayaran SPP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Administrator</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="spp.php">SPP</a>
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pembayaran</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Laporan</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="logout.php" class="btn btn-primary">Logout</a>
-
+<body>
+    <nav class="navbar navbar-expand-lg bg-secondary-subtle">
+        <div class="container-fluid">
+            <a class="navbar-brand text-bold" href="index.php">Pembayaran SPP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.php?url=home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=spp">SPP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=kelas">Kelas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=siswa">Siswa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=petugas">Petugas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=pembayaran">Pembayaran</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?url=laporan">Laporan</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-
-        <div class="container-fluid mt-2">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="bg-success-subtle mx-auto p-2">
-                        <p class="fs-7 text-center">Anda login sebagai <b>Petugas</b></p>
-                    </div>
-
-                    <div class="card mt-1" style="height: 50px;">
-                        <div class="body-card">
-                            <p class="p-1">SELAMAT DATANG DI WEBSITE PEMBAYARAN SPP</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a href="logout.php" class="btn btn-primary">Logout</a>
         </div>
+    </nav>
 
 
 
-    </body>
-
-<?php } elseif ($data['level'] == 'admin') { ?>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=q, initial-scale=1.0">
-        <title>Admin</title>
-        <link rel="stylesheet" href="/asset/bootstrap-5.3.3-dist/css/bootstrap.min.css">
-        <script src="/asset/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    </head>
-
-    <body>
-        <nav class="navbar navbar-expand-lg bg-secondary-subtle">
-            <div class="container-fluid">
-                <a class="navbar-brand text-bold" href="#">Pembayaran SPP</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Administrator</a>
-                        </li> -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="spp.php">SPP</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Kelas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Siswa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Petugas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Pembayaran</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Laporan</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="logout.php" class="btn btn-primary">Logout</a>
-
-            </div>
-        </nav>
-
-        <div class="container-fluid mt-2">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="bg-success-subtle mx-auto p-2">
-                        <p class="fs-7 text-center">Anda login sebagai <b>Administrator</b></p>
-                    </div>
-
-                    <div class="card mt-1" style="height: 50px;">
-                        <div class="body-card">
-                            <p class="p-1">SELAMAT DATANG DI WEBSITE PEMBAYARAN SPP</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+    <div class="container-fluid mt-2">
+        <?php 
+            $page = isset($_GET['url'])? $_GET['url'] : 'home';
+            include 'src/view/'. $page . '.php';
+        ?>
+    </div>
 
 
-<?php } else {
-    header('location:login.php');
-} ?>
+</body>
 
 </html>
+<?php }else{
+    echo "<script>alert('not access');location.href='login.php';</script>";
+} ?>

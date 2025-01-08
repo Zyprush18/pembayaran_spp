@@ -1,9 +1,9 @@
 <?php
 
-require './vendor/autoload.php';
+require (__DIR__.'/../vendor/autoload.php');
 
 $dotenv = new Symfony\Component\Dotenv\Dotenv();
-$dotenv->load('./.env');
+$dotenv->load(__DIR__.'/../.env');
 
 $host = $_ENV['DB_HOST'];
 $port =$_ENV['DB_PORT'];

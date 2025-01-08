@@ -13,7 +13,7 @@ try {
             $_SESSION['user'] = mysqli_fetch_array($query);
             header('location: index.php');
         }else{
-            echo "<script>alert('Username atau password salah');location.href='login.php'</script>";
+            echo "<script>alert('Username atau password salah');location.href='index.php'</script>";
         }
        }
     }
