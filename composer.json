@@ -1,0 +1,17 @@
+{
+    "name": "zul/spp",
+    "autoload": {
+        "psr-4": {
+            "Zul\\Spp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Zyprush18",
+            "email": "zyprush9@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/dotenv": "^7.2"
+    }
+}

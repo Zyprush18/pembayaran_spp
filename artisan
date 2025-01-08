@@ -1,0 +1,27 @@
+<?php
+
+if (class_exists("COM")) {
+    try {
+        $voice = new COM("SAPI.SpVoice");
+
+       $phpFile = "./databases/migration.php";
+
+
+        if (file_exists($phpFile)) {
+            ob_start();
+            include($phpFile);
+            $output = ob_get_clean();
+
+            $voice->Speak($output);
+
+            echo "berhasil migrate";
+        } else {
+            echo "File not found: " . $phpFile;
+        }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
+} else {
+    echo "COM class is not available. Please ensure COM is enabled in your PHP configuration.";
+}
+?>
