@@ -38,7 +38,7 @@
                                         <div class="mb-3">
                                             <label for="level">level</label>
                                             <select class="form-select" aria-label="Default select example" name="level" id="level">
-                                                <option selected>Pilih Level Akses</option>
+                                                <option selected disabled>Pilih Level Akses</option>
                                                 <option value="admin">Admin</option>
                                                 <option value="petugas">Petugas</option>
                                             </select>
@@ -128,7 +128,7 @@
                                                     <div class="mb-3">
                                                         <label for="level">level</label>
                                                         <select class="form-select" aria-label="Default select example" name="levels" id="levels">
-                                                            <option value="<?= $petugas['levels'] ?>" <?php $petugas ? $petugas['levels'] : ''; ?>><?= $petugas['levels'] == 'admin' ? 'Admin' : 'Petugas' ?></option>
+                                                            <option value="<?= $petugas['levels'] ?>" <?php $petugas ? $petugas['levels'] : ''; ?> selected disabled ><?= $petugas['levels'] == 'admin' ? 'Admin' : 'Petugas' ?></option>
                                                             <option value="admin">Admin</option>
                                                             <option value="petugas">Petugas</option>
                                                         </select>
