@@ -24,19 +24,19 @@
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="nama">Nama Siswa</label>
-                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Siswa" name="nama">
+                                            <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama Siswa" name="nama" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="nis">Nis</label>
-                                            <input type="number" class="form-control" id="nis" placeholder="Masukkan Nis Siswa" name="nis">
+                                            <input type="number" class="form-control" id="nis" placeholder="Masukkan Nis Siswa" name="nis" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="nisn">Nisn</label>
-                                            <input type="number" class="form-control" id="nisn" placeholder="Masukkan Nisn Siswa" name="nisn">
+                                            <input type="number" class="form-control" id="nisn" placeholder="Masukkan Nisn Siswa" name="nisn" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="id_kelas">Kelas</label>
-                                            <select class="form-select" aria-label="Default select example" name="id_kelas" id="id_kelas">
+                                            <select class="form-select" aria-label="Default select example" name="id_kelas" id="id_kelas" required>
                                                 <option selected disabled>Pilih Kelas - Kompetensi Keahlian</option>
                                                 <?php
                                                 $data = mysqli_query($connect, "SELECT * FROM kelas ORDER BY nama_kelas");
@@ -47,15 +47,15 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="alamat">Alamat Siswa</label>
-                                            <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat Siswa" name="alamat">
+                                            <input type="text" class="form-control" id="alamat" placeholder="Masukkan Alamat Siswa" name="alamat" required>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="no_tlp">No. Telepon</label>
-                                            <input type="number" class="form-control" id="no_tlp" placeholder="Masukkan Nomor Telepon Siswa" name="no_tlp">
+                                            <label for="no_telp">No. Telepon</label>
+                                            <input type="number" class="form-control" id="no_telp" placeholder="Masukkan Nomor Telepon Siswa" name="no_telp" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="id_kelas">Tahun Dan Nominal SPP</label>
-                                            <select class="form-select" aria-label="Default select example" name="id_spp" id="id_spp">
+                                            <select class="form-select" aria-label="Default select example" name="id_spp" id="id_spp" required>
                                                 <option selected disabled>Pilih Tahun - Nominal SPP</option>
                                                 <?php
                                                 $data = mysqli_query($connect, "SELECT * FROM spp ORDER BY tahun");
@@ -88,6 +88,7 @@
                             <th scope="col">Kelas</th>
                             <th scope="col">Kompetensi Keahlian</th>
                             <th scope="col">Alamat</th>
+                            <th scope="col">No. Telp</th>
                             <th scope="col">Tahun SPP</th>
                             <th scope="col">Nominal SPP</th>
                             <th>Aksi</th>
@@ -99,7 +100,8 @@
                         $no = 1;
                         ?>
                         <?php foreach ($data as $siswa) { ?>
-                            <tr class="text-center">
+
+                            <tr class="text-center" style="font-size: 12px;">
                                 <th scope="row"><?php echo $no++; ?></th>
                                 <td><?= $siswa['nama'] ?></td>
                                 <td><?= $siswa['nis']  ?></td>
@@ -107,7 +109,8 @@
                                 <td><?= $siswa['nama_kelas']  ?></td>
                                 <td><?= $siswa['kompetensi_keahlian']  ?></td>
                                 <td><?= $siswa['alamat']  ?></td>
-                                <td><?= $siswa['tahun']  ?></td>
+                                <td><?= $siswa['no_telp']  ?></td>
+                                <td><?= $siswa['tahun']  ?> </td>
                                 <td>Rp.<?php echo number_format($siswa['nominal'], 0, '.', '.') ?></td>
                                 <td>
                                     <button type="button" class="btn btn-outline-warning btn-md mb-10" data-bs-toggle="modal" data-bs-target="#updateModal-<?= $siswa['id_siswa'] ?>">
@@ -139,16 +142,58 @@
                                             <input type="hidden" name="_method" value="PUT">
                                             <input type="hidden" name="id" value="<?= $siswa['id_siswa'] ?>">
                                             <div class="modal-body">
-                                                <div class="modal-body">
-                                                    <div class="mb-3">
-                                                        <label for="nama_siswas">siswa</label>
-                                                        <input type="text" class="form-control" id="nama_siswas" value="<?= $siswa['nama_siswa'] ?>" name="nama_siswas">
-                                                    </div>
+                                                <div class="mb-3">
+                                                    <label for="namas">Nama Siswa</label>
+                                                    <input type="text" class="form-control" id="namas" value="<?= $siswa['nama'] ?>" name="namas" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="niss">Nis</label>
+                                                    <input type="number" class="form-control" id="niss" value="<?= $siswa['nis'] ?>" name="niss" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nisns">Nisn</label>
+                                                    <input type="number" class="form-control" id="nisns" value="<?= $siswa['nisn'] ?>" name="nisns" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="id_kelass">Kelas</label>
+                                                    <select class="form-select" aria-label="Default select example" name="id_kelas" id="id_kelas" required>
+                                                        <option disabled <?= !$siswa ? 'selected' : '' ?>>Pilih Kelas</option>
+                                                        <?php
+                                                        $datas = mysqli_query($connect, "SELECT * FROM kelas ORDER BY nama_kelas");
+                                                        foreach ($datas as $kelas) {
+                                                            // Menentukan apakah opsi harus dipilih
+                                                            $selected = ($siswa && $siswa['id_kelas'] == $kelas['id_kelas']) ? 'selected' : '';
+                                                        ?>
+                                                            <option value="<?= $kelas['id_kelas'] ?>" <?= $selected ?>>
+                                                                <?= $kelas['nama_kelas'] ?> - <?= $kelas['kompetensi_keahlian'] ?>
+                                                            </option>
+                                                        <?php } ?>
 
-                                                    <div class="mb-3">
-                                                        <label for="kompetensi_keahlian">Kompetensi Keahlian</label>
-                                                        <input type="text" class="form-control" id="kompetensi_keahlians" value="<?= $siswa['kompetensi_keahlian'] ?>" name="kompetensi_keahlians">
-                                                    </div>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="alamats">Alamat Siswa</label>
+                                                    <input type="text" class="form-control" id="alamats" value="<?= $siswa['alamat'] ?>" name="alamats" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="no_telps">No. Telepon</label>
+                                                    <input type="number" class="form-control" id="no_telps" value="<?= $siswa['no_telp'] ?>" name="no_telps" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="id_spp">Tahun Dan Nominal SPP</label>
+                                                    <select class="form-select" aria-label="Default select example" name="id_spp" id="id_spp" required>
+                                                    <option disabled <?= !$siswa ? 'selected' : '' ?>>Pilih spp</option>
+                                                        <?php
+                                                        $datas = mysqli_query($connect, "SELECT * FROM spp ORDER BY tahun");
+                                                        foreach ($datas as $spp) {
+                                                            
+                                                            $selected = ($siswa && $siswa['id_spp'] == $spp['id_spp']) ? 'selected' : '';
+                                                        ?>
+                                                            <option value="<?= $spp['id_spp'] ?>" <?= $selected ?>>
+                                                                <?= $spp['tahun'] ?> -  Rp.<?= number_format($spp['nominal'], 2, ',', '.') ?>
+                                                            </option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -171,7 +216,7 @@
                                         </div>
                                         <form action=".././controller/siswacontroller.php" method="post">
                                             <input type="hidden" name="_methods" value="DELETE">
-                                            <input type="hidden" name="ids" value="<?= $siswa['id_siswa'] ?>">
+                                            <input type="hidden" name="id" value="<?= $siswa['id_siswa'] ?>">
                                             <div class="modal-body">
                                                 <p>Apakah anda yakin ingin menghapus data ini?</p>
                                             </div>

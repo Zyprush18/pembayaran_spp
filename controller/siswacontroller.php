@@ -13,7 +13,7 @@ try {
     $data = mysqli_fetch_array($level);
   
     // create data
-    if (isset($_POST['nama']) && isset($_POST['nis']) && isset($_POST['nisn']) && isset($_POST['alamat']) && isset($_POST['id_kelas'])) {
+    if (isset($_POST['nama']) && isset($_POST['nis']) && isset($_POST['nisn']) && isset($_POST['alamat']) && isset($_POST['id_kelas']) && isset($_POST['no_telp']) && isset($_POST['id_spp'])) {
 
         $nama = $_POST['nama'];
         $nis = $_POST['nis'];
@@ -33,16 +33,19 @@ try {
     }
 
     // update data 
-    if (isset($_POST['usernames']) && isset($_POST['passwords']) && isset($_POST['nama_petugass']) && isset($_POST['levels']) && $_POST['_method'] == "PUT") {
+    if ($_POST['_method'] == "PUT") {
         $id = $_POST['id'];
-        $username = $_POST['usernames'];
-        $password = md5($_POST['passwords']);
-        $nama_petugas = $_POST['nama_petugass'];
-        $level = $_POST['levels'];
+        $nama = $_POST['namas'];
+        $nis = $_POST['niss'];
+        $nisn = $_POST['nisns'];
+        $alamat = $_POST['alamats'];
+        $no_telp = $_POST['no_telps'];
+        $id_spp = $_POST['id_spp'];
+        $id_kelas = $_POST['id_kelas'];
 
-        $update = mysqli_query($connect, "UPDATE petugas SET username='$username',password='$password',nama_petugas='$nama_petugas', levels='$level' WHERE id_petugas=$id");
+        $update = mysqli_query($connect, "UPDATE siswa SET nama='$nama',nis='$nis',nisn='$nisn', alamat='$alamat',no_telp='$no_telp',id_spp='$id_spp',id_kelas='$id_kelas' WHERE id_siswa=$id");
         if ($update) {
-            header("Location: /index.php?url=petugas");
+            header("Location: /index.php?url=siswa");
             exit;
         } else {
             echo "<script>alert('Gagal Edit Data')</script>";
@@ -50,12 +53,12 @@ try {
     }
 
     // delete data 
-    if (isset($_POST['ids']) && $_POST['_methods'] == "DELETE") {
-        $id = $_POST['ids'];
+    if ($_POST['_methods'] == "DELETE") {
+        $id = $_POST['id'];
 
-        $delete = mysqli_query($connect, "DELETE FROM petugas WHERE id_petugas=$id");
+        $delete = mysqli_query($connect, "DELETE FROM siswa WHERE id_siswa=$id");
         if ($delete) {
-            header("Location: /index.php?url=petugas");
+            header("Location: /index.php?url=siswa");
             exit;
         } else {
             echo "<script>alert('Gagal Hapus Data')</script>";
