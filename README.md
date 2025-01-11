@@ -34,5 +34,5 @@ Pastikan Anda telah menginstal [Composer](https://getcomposer.org/).
 
 
 
-Aplikasi akan dapat diakses di http://localhost/pembayaran_spp/login.php atau sesuai dengan konfigurasi server Anda atau pu anda juga bisa demo website nya di https;//pspp.zyprush.my.id/ dengan memasukkan username `admin` dan password `admin123`.
+Aplikasi akan dapat diakses di http://localhost/pembayaran_spp/login.php atau sesuai dengan konfigurasi server Anda atau pu anda juga bisa demo website nya di https://pspp.zyprush.my.id/ dengan memasukkan username `admin` dan password `admin123`.
 # Pembayaran SPP
