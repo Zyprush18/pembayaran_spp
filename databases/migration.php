@@ -32,14 +32,14 @@ include 'connections.php';
                          PRIMARY KEY (id_siswa)
                      )",
         
-            "CREATE TABLE IF NOT EXISTS `petugas`(
-                         id_petugas INT(11) AUTO_INCREMENT NOT NULL,
-                         username VARCHAR(25) NULL,
-                         password varchar(32) NULL,
-                         nama_petugas VARCHAR(35) NULL,
-                         level enum('admin','petugas'),
-                         PRIMARY KEY (id_petugas)
-                     )",
+                "CREATE TABLE IF NOT EXISTS `petugas`(
+                            id_petugas INT(11) AUTO_INCREMENT NOT NULL,
+                            username VARCHAR(25) NULL,
+                            password varchar(32) NULL,
+                            nama_petugas VARCHAR(35) NULL,
+                            level enum('admin','petugas'),
+                            PRIMARY KEY (id_petugas)
+                        )",
         
             "CREATE TABLE IF NOT EXISTS `pembayaran`(
                          id_pembayaran INT(11) AUTO_INCREMENT NOT NULL,
