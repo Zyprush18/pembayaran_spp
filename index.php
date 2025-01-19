@@ -74,7 +74,7 @@ try {
     <div class="container-fluid mt-2">
         <?php 
             $page = isset($_GET['url'])? $_GET['url'] : 'home';
-            include 'src/view/'. $page . '.php';
+            include 'view/'. $page . '.php';
         ?>
     </div>
 

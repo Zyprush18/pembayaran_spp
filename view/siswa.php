@@ -20,7 +20,7 @@
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action=".././controller/siswacontroller.php" method="post">
+                                <form action="../controller/siswacontroller.php" method="post">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="nama">Nama Siswa</label>

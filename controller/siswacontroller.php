@@ -23,8 +23,10 @@ try {
         $id_spp = $_POST['id_spp'];
         $id_kelas = $_POST['id_kelas'];
 
-        $create = mysqli_query($connect, "INSERT INTO siswa (nama, nis, nisn, alamat, no_telp, id_spp, id_kelas) VALUES ('$nama','$nis','$nisn','$alamat','$no_telp', '$id_spp',' $id_kelas')");
-        if ($create) {
+        $createSiswa = mysqli_query($connect, "INSERT INTO siswa (nama, nis, nisn, alamat, no_telp, id_spp, id_kelas) VALUES ('$nama','$nis','$nisn','$alamat','$no_telp', '$id_spp',' $id_kelas')");
+        $createPembayaran = mysqli_query($connect, "INSERT INTO pembayaran (id_petugas, id_siswa,nisns, tgl_bayar, bulan_bayar, tahun_bayar, id_spp, jumlah_bayar) VALUES (NULL ,NULL,'$nisn',NULL, NULL, NULL, '$id_spp', 0)");
+
+        if ($createSiswa && $createPembayaran) {
             header("Location: /index.php?url=siswa");
             exit;
         } else {

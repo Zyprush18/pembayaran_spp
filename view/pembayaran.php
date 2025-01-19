@@ -5,12 +5,12 @@
                 <div class=" d-flex justify-content-between">
                     <h5 class="card-title">PEMBAYARAN</h5>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-success d-flex" data-bs-toggle="modal" data-bs-target="#createModal">
+                    <!-- <button type="button" class="btn btn-outline-success d-flex" data-bs-toggle="modal" data-bs-target="#createModal">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" width="23px">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Tambah Data
-                    </button>
+                    </button> -->
 
                     <?php
                     $bulan = array(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
@@ -20,7 +20,7 @@
 
                     ?>
 
-                    <!-- Modal create -->
+                    <!-- Modal create
                     <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -34,22 +34,22 @@
                                             <label for="id_siswa">Siswa dan NISN</label>
                                             <select class="form-select" aria-label="Default select example" name="id_siswa" id="id_siswa" required>
                                                 <option selected disabled>Pilih Siswa - NISN</option>
-                                                <?php
+                                                <php
                                                 $data = mysqli_query($connect, "SELECT * FROM siswa ORDER BY nama");
                                                 foreach ($data as $siswa) { ?>
-                                                    <option value="<?= $siswa['id_siswa'] ?>"><?= $siswa['nama'] ?> - <?= $siswa['nisn'] ?></option>
-                                                <?php } ?>
+                                                    <option value="<= $siswa['id_siswa'] ?>"><= $siswa['nama'] ?> - <= $siswa['nisn'] ?></option>
+                                                <php } ?>
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="id_siswa">Tahun dan Nominal SPP</label>
                                             <select class="form-select" aria-label="Default select example" name="id_siswa" id="id_siswa" required>
                                                 <option selected disabled>Pilih Tahun - Nominal SPP</option>
-                                                <?php
+                                                <php
                                                 $data = mysqli_query($connect, "SELECT * FROM spp ORDER BY nominal");
                                                 foreach ($data as $siswa) { ?>
-                                                    <option value="<?= $siswa['id_spp'] ?>"><?= $siswa['tahun'] ?> - Rp.<?= number_format($siswa['nominal'], 0, ',', '.')  ?></option>
-                                                <?php } ?>
+                                                    <option value="<= $siswa['id_spp'] ?>"><= $siswa['tahun'] ?> - Rp.<= number_format($siswa['nominal'], 0, ',', '.')  ?></option>
+                                                <php } ?>
                                             </select>
                                         </div>
 
@@ -61,10 +61,10 @@
                                             <label for="tgl_bayar">Bulan Bayar</label>
                                             <select class="form-select" aria-label="Default select example" name="id_siswa" id="id_siswa" required>
                                                 <option selected disabled>Pilih Bulan</option>
-                                                <?php foreach ($bulan as $key => $value) {
+                                                <php foreach ($bulan as $key => $value) {
                                                     foreach ($value as $key => $val) { ?>
-                                                        <option value="<?= $val ?>"><?= $val ?></option>
-                                                <?php }
+                                                        <option value="<= $val ?>"><= $val ?></option>
+                                                <php }
                                                 } ?>
                                             </select>
                                         </div>
@@ -73,9 +73,9 @@
                                             <label for="tgl_bayar">Tahun Bayar</label>
                                             <select class="form-select" aria-label="Default select example" name="id_siswa" id="id_siswa" required>
                                                 <option selected disabled>Pilih Tahun</option>
-                                                <?php foreach ($tahun as $key => $value) { ?>
-                                                    <option value="<?= $value ?>"><?= $value ?></option>
-                                                <?php } ?>
+                                                <php foreach ($tahun as $key => $value) { ?>
+                                                    <option value="<= $value ?>"><= $value ?></option>
+                                                <php } ?>
                                             </select>
                                         </div>
                                         <div class="mb-3">
@@ -89,7 +89,7 @@
                                         
                                         <div class="mb-3">
                                             <label for="id_petugas">Petugas</label>
-                                            <input type="text" class="form-control" id="tgl_bayar" value="<?= $_SESSION['user']['username']?>" name="tgl_bayar">
+                                            <input type="text" class="form-control" id="tgl_bayar" value="<= $_SESSION['user']['username']?>" name="tgl_bayar">
                                         </div>
 
                                     </div>
@@ -99,7 +99,7 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
 
@@ -127,7 +127,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $data = mysqli_query($connect, "SELECT * FROM pembayaran,siswa,spp,petugas WHERE pembayaran.id_siswa=siswa.id_siswa AND pembayaran.id_spp=spp.id_spp AND pembayaran.id_petugas=petugas.id_petugas order by id_pembayaran DESC");
+                        $data = mysqli_query($connect, "SELECT * FROM pembayaran,siswa,spp,petugas WHERE  pembayaran.id_spp=spp.id_spp AND siswa.nisn=pembayaran.nisns order by id_pembayaran DESC");
                         $no = 1;
                         ?>
                         <?php foreach ($data as $pembayaran) { ?>
@@ -137,7 +137,7 @@
                             $pembayaranspp = mysqli_query($connect, "SELECT SUM(jumlah_bayar) as jumlah_bayar FROM pembayaran WHERE nisns=$nisn");
                             $pembayaran_spp = mysqli_fetch_array($pembayaranspp);
                             $jumlah_pembayaran = $pembayaran_spp['jumlah_bayar'];
-                            $kekurangan = $jumlah_pembayaran ? $pembayaran['nominal'] - $jumlah_pembayaran : '0';
+                            $kekurangan = $pembayaran['nominal'] - $jumlah_pembayaran;
                             ?>
 
                             <tr class="text-center">
